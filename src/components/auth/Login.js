@@ -1,14 +1,20 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchNewTokenAsync } from "../../store/actions/SessionActions";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const handleSubmit = () => {};
+  const dispatch = useDispatch();
+
+  const handleSubmit = () => {
+    dispatch(fetchNewTokenAsync(email, password));
+  };
 
   return (
-    <div className="text-center">
+    <div className="text-center mt-14">
       <div>
         <p className="font-bold text-2xl py-4">Log in or Sign up</p>
       </div>
