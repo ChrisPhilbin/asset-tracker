@@ -36,7 +36,7 @@ export const fetchNewTokenAsync = (userData) => {
       );
       if (response.ok) {
         const token = await response.json();
-        console.log(token, "token from successful auth");
+        await localStorage.setItem("AuthToken", `Bearer ${token.token}`);
         dispatch(getTokenSuccess(token));
       }
     } catch (error) {

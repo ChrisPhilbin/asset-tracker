@@ -1,13 +1,20 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchNewTokenAsync } from "../../store/actions/SessionActions";
 
 const Login = () => {
+  const token = useSelector((state) => state.session.token);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const dispatch = useDispatch();
+  React.useEffect(() => {
+    if (token) {
+      navigate("/assets", { replace: true });
+    }
+  }, [token, navigate]);
 
   const handleSubmit = () => {
     const userData = {

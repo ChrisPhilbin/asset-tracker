@@ -8,6 +8,7 @@ import "./App.css";
 import Home from "./static/Home";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
+import AssetDashboard from "./components/assets/AssetDashboard";
 
 const store = createStore(
   rootReducer,
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/assets" element={<AssetDashboard />} />
         </Routes>
       </Provider>
     </Router>

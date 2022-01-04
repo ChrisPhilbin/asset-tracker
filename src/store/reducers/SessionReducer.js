@@ -1,7 +1,7 @@
 import * as actions from "../actions/SessionActions";
 
 export const initialSessionState = {
-  token: "",
+  token: localStorage.getItem("AuthToken") || null,
   loading: false,
   hasErrors: false,
 };

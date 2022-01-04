@@ -8,7 +8,6 @@ firebase.initializeApp(config);
 const { validateLoginData, validateSignUpData } = require("../util/validators");
 
 exports.loginUser = (request, response) => {
-  console.log(request.body, "***incoming request");
   const user = {
     email: request.body.email,
     password: request.body.password,
@@ -35,7 +34,6 @@ exports.loginUser = (request, response) => {
 };
 
 exports.isUserSignedIn = (request, response) => {
-  console.log(request.body.idtoken, "***request***");
   let idtoken;
   if (request.body.idtoken && request.body.idtoken.startsWith("Bearer ")) {
     idtoken = request.body.idtoken.split("Bearer ")[1];
