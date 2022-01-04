@@ -10,13 +10,19 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    dispatch(fetchNewTokenAsync(email, password));
+    const userData = {
+      email: email,
+      password: password,
+    };
+    dispatch(fetchNewTokenAsync(userData));
   };
 
   return (
     <div className="text-center mt-14">
       <div>
-        <p className="font-bold text-2xl py-4">Log in or Sign up</p>
+        <p className="font-bold text-2xl py-4 text-gray-700">
+          Log in or Sign up
+        </p>
       </div>
       <div className="w-1/4 ml-auto mr-auto">
         <input
@@ -37,18 +43,18 @@ const Login = () => {
           onClick={handleSubmit}
           className={
             email && password
-              ? "block bg-emerald-200 p-4 rounded-lg w-full text-3xl"
-              : "block bg-slate-300 p-4 rounded-lg w-full text-3xl cursor-not-allowed"
+              ? "block bg-red-500 p-4 rounded-lg w-full text-3xl text-white"
+              : "block bg-slate-300 p-4 rounded-lg w-full text-3xl text-gray-600 cursor-not-allowed"
           }
           disabled={!email || !password}
         >
           Log in
         </button>
         <div className="text-right pt-2">
-          <p className="block text-sm">
+          <p className="block text-sm text-gray-700">
             <Link to="/sign-up">Don't have an account? Sign up</Link>
           </p>
-          <p className="block text-sm">Forgot your password?</p>
+          <p className="block text-sm text-gray-700">Forgot your password?</p>
         </div>
       </div>
     </div>

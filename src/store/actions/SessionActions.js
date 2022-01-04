@@ -11,12 +11,34 @@ export const getTokenSuccess = (token) => ({
   payload: token,
 });
 
-export const getTokenFailure = () => ({
+export const getTokenFailure = (error) => ({
   type: GET_TOKEN_FAILURE,
+  payload: error,
 });
 
-export const fetchNewTokenAsync = (email, password) => {
+export const fetchNewTokenAsync = (userData) => {
   return async (dispatch) => {
-    dispatch(getPosts());
+    dispatch(getToken());
+    try {
+      const response = await fetch(
+        `http://localhost:5001/asset-tracker-15d95/us-central1/api/login`,
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
+      if (response.ok) {
+        const token = await response.json();
+        console.log(token, "token from successful auth");
+        dispatch(getTokenSuccess(token));
+      }
+    } catch (error) {
+      console.log(error, "error signing in");
+      dispatch(getTokenFailure(error));
+    }
   };
 };
