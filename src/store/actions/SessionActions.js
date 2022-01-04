@@ -17,14 +17,16 @@ export const getTokenFailure = (error) => ({
 });
 
 export const fetchNewTokenAsync = (userData) => {
+  console.log(userData);
+  console.log(JSON.stringify(userData));
   return async (dispatch) => {
     dispatch(getToken());
     try {
       const response = await fetch(
-        `http://localhost:5001/asset-tracker-15d95/us-central1/api/login`,
+        `https://immense-headland-94271.herokuapp.com/https://us-central1-asset-tracker-15d95.cloudfunctions.net/api/login`,
         {
           method: "POST",
-          mode: "no-cors",
+          mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },
