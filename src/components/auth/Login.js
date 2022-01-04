@@ -29,7 +29,7 @@ const Login = () => {
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="username"
+          placeholder="email address"
           className="block rounded-lg border-2 h-14 mb-4 text-xl p-4 w-full"
         />
         <input
@@ -52,7 +52,7 @@ const Login = () => {
         </button>
         <div className="text-right pt-2">
           <p className="block text-sm text-gray-700">
-            <Link to="/sign-up">Don't have an account? Sign up</Link>
+            <Link to="/signup">Don't have an account? Sign up</Link>
           </p>
           <p className="block text-sm text-gray-700">Forgot your password?</p>
         </div>

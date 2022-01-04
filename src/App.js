@@ -7,6 +7,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import "./App.css";
 import Home from "./static/Home";
 import Login from "./components/auth/Login";
+import Signup from "./components/auth/Signup";
 
 const store = createStore(
   rootReducer,
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </Provider>
     </Router>
