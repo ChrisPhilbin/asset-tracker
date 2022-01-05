@@ -18,11 +18,9 @@ const AddNewAsset = () => {
   };
 
   const handleAddTag = (e) => {
-    console.log(e.target.value, "event coming in");
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && e.target.value !== "") {
       setTags((prevTags) => [...prevTags, e.target.value]);
     }
-    console.log(tags, "value of tags arr");
   };
 
   if (token) {
