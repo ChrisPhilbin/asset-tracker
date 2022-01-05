@@ -1,0 +1,13 @@
+assets will have the following:
+
+- unique ID (auto/serial)
+- date added (auto/serial)
+- data purchased (mm-dd-yyyy)
+- name of purchase (IE: 55 inch OLED TV, pool pump)
+- amount ($xxx.xx)
+- Optional warranty info
+- Warranty expiration date (mm-dd-yyyy)
+- tags (ie: master bedroom, basement, etc so they can filter by tag)
+- Picture of the item
+- Picture of the receipt
+- Misc notes/free text field (so they can filter/search)
