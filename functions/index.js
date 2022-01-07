@@ -15,3 +15,7 @@ app.post("/login", loginUser);
 app.post("/signup", signUpUser);
 app.get("/user", auth, getUserDetail);
 app.post("/user/auth", isUserSignedIn);
+
+const { createNewAsset } = require("./api/assets");
+
+app.post("/assets/create", auth, createNewAsset);
