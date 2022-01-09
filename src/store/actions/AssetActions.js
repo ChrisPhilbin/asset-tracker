@@ -4,7 +4,6 @@ export const CREATE_NEW_ASSET_FAILURE = "CREATE_NEW_ASSET_FAILURE";
 export const GET_USER_ASSETS = "GET_USER_ASSETS";
 export const GET_USER_ASSETS_SUCCESS = "GET_USER_ASSETS_SUCCESS";
 export const GET_USER_ASSETS_FAILURE = "GET_USER_ASSETS_FAILURE";
-export const FILTER_ASSETS = "FILTER_ASSETS";
 
 export const createNewAsset = () => ({
   type: CREATE_NEW_ASSET,
@@ -66,16 +65,5 @@ export const fetchUserAssetsAsync = (authToken) => {
     } catch (error) {
       dispatch(getUserAssetsFailure(error));
     }
-  };
-};
-
-export const updateAssets = (searchTerm) => ({
-  type: FILTER_ASSETS,
-  payload: searchTerm,
-});
-
-export const searchAssets = (searchTerm) => {
-  return (dispatch) => {
-    dispatch(updateAssets(searchTerm));
   };
 };

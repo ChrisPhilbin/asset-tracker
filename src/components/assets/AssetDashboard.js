@@ -1,23 +1,29 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchUserAssetsAsync,
-  searchAssets,
-} from "../../store/actions/AssetActions";
+import { fetchUserAssetsAsync } from "../../store/actions/AssetActions";
+import { searchAssets } from "../../store/actions/FilterActions";
 
 const AssetDashboard = () => {
   const dispatch = useDispatch();
+  const assets = useSelector((state) => state.assets.assets);
+  const filter = useSelector((state) => state.filter.nameFilter);
   const token = useSelector((state) => state.session.token);
-  const userAssets = useSelector((state) => state.assets.assets);
 
-  const searchAssetsByTag = (e) => {
-    e.preventDefault();
-    dispatch(searchAssets(e.target.value));
-  };
+  let userAssets = [];
 
-  const searchAssetsByNotes = (e) => {
-    e.preventDefault();
-    dispatch(searchAssets(e.target.value));
+  if (filter) {
+    assets.forEach((asset) => {
+      if (asset.assetName.toLowerCase().includes(filter.toLowerCase())) {
+        userAssets.push(asset);
+      }
+    });
+  } else if (!filter) {
+    userAssets = assets;
+  }
+
+  const searchByName = (searchTerm) => {
+    dispatch(searchAssets(searchTerm));
   };
 
   React.useEffect(() => {
@@ -26,17 +32,25 @@ const AssetDashboard = () => {
     }
   }, [token]);
 
-  console.log(userAssets, "user assets");
-
   if (token) {
     return (
       <>
-        <div className="grid grid-cols-1 md:grid-cols-2 p-5">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 p-5">
+          <div className="md:col-span-2 mb-2">
+            <Link to="/assets/new">
+              <button className="bg-blue-600 rounded m-2 p-3 text-white">
+                New asset
+              </button>
+            </Link>
+            <input
+              type="text"
+              placeholder="search by name..."
+              className="rounded placeholder-gray-400"
+              onChange={(e) => searchByName(e.target.value)}
+            />
+          </div>
           {userAssets.map((asset) => (
-            <div
-              className="rounded overflow-hidden shadow-lg"
-              key={asset.assetName}
-            >
+            <div className="rounded shadow-lg" key={asset.assetName}>
               <img
                 className="w-full"
                 src="https://firebasestorage.googleapis.com/v0/b/asset-tracker-15d95.appspot.com/o/svs_pb_4000.jpg?alt=media&token=2095415b-7535-406c-b34f-37c2ca22a796"

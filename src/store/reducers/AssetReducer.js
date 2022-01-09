@@ -2,6 +2,7 @@ import * as actions from "../actions/AssetActions";
 
 export const initialSessionState = {
   assets: [],
+  nameFilter: "",
   loading: false,
   hasErrors: false,
 };
