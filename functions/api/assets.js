@@ -1,10 +1,6 @@
 const { db, admin } = require("../util/admin");
 const config = require("../util/config");
-
-const firebase = require("firebase");
-require("firebase/storage");
-
-function createNewAsset(request, response) {
+exports.createNewAsset = async (request, response) => {
   const newAsset = {
     assetName: request.body.assetName,
     amount: request.body.amount,
@@ -25,5 +21,4 @@ function createNewAsset(request, response) {
     .catch((error) => {
       response.status(500).json({ error: "Unable to save new asset" });
     });
-}
-module.exports = { createNewAsset };
+};

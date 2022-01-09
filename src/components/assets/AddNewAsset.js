@@ -10,7 +10,9 @@ const AddNewAsset = () => {
   const [amount, setAmount] = React.useState("");
   const [datePurchased, setDatePurchased] = React.useState("");
   const [assetImage, setAssetImage] = React.useState("");
+  const [assetImageUrl, setAssetImageUrl] = React.useState("");
   const [receiptImage, setReceiptImage] = React.useState("");
+  const [receiptImageUrl, setReceiptImageUrl] = React.useState("");
   const [assetName, setAssetName] = React.useState("");
   const [notes, setNotes] = React.useState("");
   const [tags, setTags] = React.useState([]);
