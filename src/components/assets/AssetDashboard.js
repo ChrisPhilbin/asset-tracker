@@ -1,11 +1,24 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserAssetsAsync } from "../../store/actions/AssetActions";
+import {
+  fetchUserAssetsAsync,
+  searchAssets,
+} from "../../store/actions/AssetActions";
 
 const AssetDashboard = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.session.token);
   const userAssets = useSelector((state) => state.assets.assets);
+
+  const searchAssetsByTag = (e) => {
+    e.preventDefault();
+    dispatch(searchAssets(e.target.value));
+  };
+
+  const searchAssetsByNotes = (e) => {
+    e.preventDefault();
+    dispatch(searchAssets(e.target.value));
+  };
 
   React.useEffect(() => {
     if (token) {
@@ -35,7 +48,10 @@ const AssetDashboard = () => {
               </div>
               <div className="px-6 pt-4 pb-2">
                 {asset.tags.map((tag) => (
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                  <span
+                    key={tag}
+                    className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                  >
                     {tag}
                   </span>
                 ))}
