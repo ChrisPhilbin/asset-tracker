@@ -4,6 +4,8 @@ export const GET_TOKEN_FAILURE = "GET_TOKEN_FAILURE";
 export const CREATE_NEW_USER = "CREATE_NEW_USER";
 export const CREATE_NEW_USER_SUCCESS = "CREATE_NEW_USER_SUCCESS";
 export const CREATE_NEW_USER_FAILURE = "CREATE_NEW_USER_FAILURE";
+export const DELETE_TOKEN_SUCCESS = "DELETE_TOKEN_SUCCESS";
+export const DELETE_TOKEN_FAILURE = "DELETE_TOKEN_FAILURE";
 
 export const getToken = () => ({
   type: GET_TOKEN,
@@ -18,6 +20,28 @@ export const getTokenFailure = (error) => ({
   type: GET_TOKEN_FAILURE,
   payload: error,
 });
+
+export const deleteTokenSuccess = (emptyToken) => ({
+  type: DELETE_TOKEN_SUCCESS,
+  payload: emptyToken,
+});
+
+export const deleteTokenFailure = (error) => ({
+  type: DELETE_TOKEN_FAILURE,
+  payload: error,
+});
+
+export const handleLogoutAndDelectAuthToken = () => {
+  return async (dispatch) => {
+    dispatch(getToken());
+    try {
+      localStorage.removeItem("AuthToken");
+      dispatch(deleteTokenSuccess(""));
+    } catch (error) {
+      dispatch(deleteTokenFailure(error));
+    }
+  };
+};
 
 export const fetchNewTokenAsync = (userData) => {
   return async (dispatch) => {
