@@ -8,6 +8,7 @@ import "./App.css";
 import Home from "./static/Home";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
+import TopNav from "./components/navigation/TopNav";
 import AssetDashboard from "./components/assets/AssetDashboard";
 import AddNewAsset from "./components/assets/AddNewAsset";
 
@@ -20,6 +21,7 @@ function App() {
   return (
     <Router>
       <Provider store={store}>
+        <TopNav />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

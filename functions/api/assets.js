@@ -1,9 +1,3 @@
-const { db, admin } = require("../util/admin");
-const config = require("../util/config");
-
-const firebase = require("firebase");
-require("firebase/storage");
-
 function createNewAsset(request, response) {
   const newAsset = {
     assetName: request.body.assetName,

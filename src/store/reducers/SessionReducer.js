@@ -14,6 +14,10 @@ export default function SessionReducer(state = initialSessionState, action) {
       return { ...state, loading: false, token: action.payload };
     case actions.GET_TOKEN_FAILURE:
       return { ...state, loading: false, hasErrors: true };
+    case actions.DELETE_TOKEN_SUCCESS:
+      return { ...state, loading: false, token: null, hasErrors: false };
+    case actions.DELETE_TOKEN_FAILURE:
+      return { ...state, loading: false, hasErrors: true };
     default:
       return state;
   }
