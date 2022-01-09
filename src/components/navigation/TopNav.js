@@ -31,7 +31,23 @@ const TopNav = () => {
 
   return (
     <div className="mt-4 p-4">
-      Top nav
+      <Link to="/">
+        <span className="m-2 text-2xl text-gray-800 font-bold">Home</span>
+      </Link>
+      {token ? (
+        <>
+          <Link to="/assets">
+            <span className="m-2 text-2xl text-gray-800 font-bold">
+              My assets
+            </span>
+          </Link>
+          <Link to="/assets/new">
+            <span className="m-2 text-2xl text-gray-800 font-bold">
+              Add new asset
+            </span>
+          </Link>
+        </>
+      ) : null}
       <div className="float-right mr-4">
         {token ? signoutButton : loginButton}
       </div>

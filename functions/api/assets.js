@@ -1,5 +1,25 @@
 const { db, admin } = require("../util/admin");
 const config = require("../util/config");
+
+exports.getUserAssets = async (request, response) => {
+  if (!request.user.user_id) {
+    return response.status(401).json({ error: "Must be logged in." });
+  }
+  let userAssets = [];
+  db.collection("assets")
+    .where("userId", "==", request.user.user_id)
+    .get()
+    .then((snapShot) => {
+      snapShot.forEach((asset) => {
+        userAssets.push(asset.data());
+      });
+      return response.status(200).json(userAssets);
+    })
+    .catch((error) => {
+      return response.status(500).json(error);
+    });
+};
+
 exports.createNewAsset = async (request, response) => {
   const newAsset = {
     assetName: request.body.assetName,

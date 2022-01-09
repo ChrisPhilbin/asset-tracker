@@ -18,6 +18,17 @@ export default function AssetReducer(state = initialSessionState, action) {
       };
     case actions.CREATE_NEW_ASSET_FAILURE:
       return { ...state, loading: false, hasErrors: true };
+    case actions.GET_USER_ASSETS:
+      return { ...state, loading: true, hasErrors: false };
+    case actions.GET_USER_ASSETS_SUCCESS:
+      return {
+        ...state,
+        assets: action.payload,
+        loading: false,
+        hasErrors: false,
+      };
+    case actions.GET_USER_ASSETS_FAILURE:
+      return { ...state, loading: false, hasErrors: true };
     default:
       return state;
   }
