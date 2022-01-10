@@ -19,10 +19,25 @@ export const createNewAssetFailure = (error) => ({
   payload: error,
 });
 
-export const fetchCreateNewAssetAsync = (assetData) => {
+export const fetchCreateNewAssetAsync = (assetData, token) => {
   return async (dispatch) => {
     dispatch(createNewAsset());
     try {
+      const response = await fetch(
+        `https://immense-headland-94271.herokuapp.com/https://us-central1-asset-tracker-15d95.cloudfunctions.net/api/assets/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+          body: JSON.stringify(assetData),
+        }
+      );
+      if (response.ok) {
+        const newAsset = await response.json();
+        dispatch(createNewAssetSuccess(newAsset));
+      }
     } catch (error) {
       dispatch(createNewAssetFailure(error));
     }

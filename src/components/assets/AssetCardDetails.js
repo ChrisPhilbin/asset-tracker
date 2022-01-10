@@ -3,11 +3,7 @@ import * as React from "react";
 const AssetCardDetails = ({ asset }) => {
   return (
     <div className="rounded shadow-lg" key={asset.assetName}>
-      <img
-        className="w-full"
-        src="https://firebasestorage.googleapis.com/v0/b/asset-tracker-15d95.appspot.com/o/svs_pb_4000.jpg?alt=media&token=2095415b-7535-406c-b34f-37c2ca22a796"
-        alt="Forest"
-      />
+      <img className="w-full" src={asset.assetImageUrl} alt={asset.assetName} />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{asset.assetName}</div>
         <p className="text-gray-700 text-base">{asset.notes}</p>

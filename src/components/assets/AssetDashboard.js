@@ -37,7 +37,7 @@ const AssetDashboard = () => {
   if (token) {
     return (
       <>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 p-5">
+        <div className="w-4/5 mx-auto grid grid-cols-1 gap-4 md:grid-cols-2 p-5">
           <div className="md:col-span-2 mb-2">
             <AssetControls />
           </div>

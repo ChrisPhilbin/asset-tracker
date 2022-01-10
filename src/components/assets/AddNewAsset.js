@@ -30,7 +30,7 @@ const AddNewAsset = () => {
       warrantyInfo,
     };
 
-    dispatch(fetchCreateNewAssetAsync(newAsset));
+    dispatch(fetchCreateNewAssetAsync(newAsset, token));
   };
 
   const handleAddTag = (e) => {
@@ -184,17 +184,11 @@ const AddNewAsset = () => {
           <button
             onClick={handleSubmit}
             className={
-              assetName && amount && datePurchased && assetImage && receiptImage
+              assetName && amount && datePurchased
                 ? "block bg-green-600 p-4 rounded-lg w-full text-3xl text-white"
                 : "block bg-gray-300 p-4 rounded-lg w-full text-3xl text-gray-600 cursor-not-allowed"
             }
-            disabled={
-              !amount ||
-              !assetName ||
-              !datePurchased ||
-              !assetImage ||
-              !receiptImage
-            }
+            disabled={!amount || !assetName || !datePurchased}
           >
             Save asset
           </button>
