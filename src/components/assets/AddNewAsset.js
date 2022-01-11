@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCreateNewAssetAsync } from "../../store/actions/AssetActions";
+import { app } from "../../firebase";
 
 const AddNewAsset = () => {
   const dispatch = useDispatch();
@@ -9,7 +10,6 @@ const AddNewAsset = () => {
 
   const [amount, setAmount] = React.useState("");
   const [datePurchased, setDatePurchased] = React.useState("");
-  const [assetImage, setAssetImage] = React.useState("");
   const [assetImageUrl, setAssetImageUrl] = React.useState("");
   const [receiptImage, setReceiptImage] = React.useState("");
   const [receiptImageUrl, setReceiptImageUrl] = React.useState("");
@@ -22,12 +22,12 @@ const AddNewAsset = () => {
     const newAsset = {
       amount,
       datePurchased,
-      assetImage,
       receiptImage,
       assetName,
       notes,
       tags,
       warrantyInfo,
+      assetImageUrl,
     };
 
     dispatch(fetchCreateNewAssetAsync(newAsset, token));
@@ -46,6 +46,15 @@ const AddNewAsset = () => {
       setTags([...tags]);
     }
   };
+
+  const uploadAssetImage = async (file) => {
+    const storageRef = app.storage().ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file);
+    setAssetImageUrl(await fileRef.getDownloadURL());
+  };
+
+  console.log(assetImageUrl, "asset image url");
 
   if (token) {
     return (
@@ -165,7 +174,7 @@ const AddNewAsset = () => {
             aria-describedby="user_avatar_help"
             id="assetImage"
             type="file"
-            onChange={(e) => setAssetImage(e.target.files[0])}
+            onChange={(e) => uploadAssetImage(e.target.files[0])}
           />
           <label
             className="block mb-2 text-left pl-2 text-sm font-medium text-gray-900 dark:text-gray-300"

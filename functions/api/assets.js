@@ -1,5 +1,4 @@
 const { db, admin } = require("../util/admin");
-const config = require("../util/config");
 
 exports.getUserAssets = async (request, response) => {
   if (!request.user.user_id) {
@@ -29,6 +28,7 @@ exports.createNewAsset = async (request, response) => {
     notes: request.body.notes,
     warrantyInfo: request.body.warrantyInfo,
     userId: request.user.user_id,
+    assetImageUrl: request.body.assetImageUrl,
   };
 
   db.collection("assets")
